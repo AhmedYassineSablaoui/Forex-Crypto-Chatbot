@@ -1,0 +1,6 @@
+# backend/requirements.txt
+flask==3.0.3
+transformers==4.44.2
+torch==2.4.1
+pandas==2.2.3
+scikit-learn==1.5.2

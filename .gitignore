@@ -1,0 +1,27 @@
+# Forex-Crypto-chatbot/.gitignore
+# Virtual environments
+venv/
+env/
+
+# SQLite databases
+database/chatbot.db
+frontend/db.sqlite3
+
+# Trained models
+backend/models/forex_distilbert/
+
+# Django static and media files
+frontend/staticfiles/
+frontend/media/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
+
+# Docker build artifacts
+*.logbackend/results/
+.env

@@ -1,0 +1,45 @@
+# Forex-Crypto-chatbot/docker-compose.yml
+version: '3.8'
+
+services:
+  train:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+    volumes:
+      - ./backend/models:/app/models
+    depends_on:
+      - db
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/models:/app/models
+      - ./database:/app/database
+    depends_on:
+      - db
+      - train
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./frontend/db.sqlite3:/app/db.sqlite3
+      - ./database:/app/database
+      - ./frontend/static:/app/static
+    depends_on:
+      - backend
+      - db
+
+  db:
+    image: busybox
+    volumes:
+      - ./database:/app/database
+    command: "true"

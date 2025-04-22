@@ -1,0 +1,101 @@
+/* frontend/static/css/styles.css */
+:root {
+    --chat-box-bg: #fff;
+    --chat-box-border: #dee2e6;
+    --scrollbar-track: #f1f1f1;
+    --scrollbar-thumb: #888;
+    --scrollbar-thumb-hover: #555;
+}
+
+[data-bs-theme="dark"] {
+    --chat-box-bg: #343a40;
+    --chat-box-border: #495057;
+    --scrollbar-track: #495057;
+    --scrollbar-thumb: #adb5bd;
+    --scrollbar-thumb-hover: #ced4da;
+}
+
+body {
+    background-color: var(--bs-body-bg); /* Use Bootstrap's body background */
+}
+
+.navbar {
+    transition: background-color 0.3s ease;
+}
+
+/* Chat Box */
+.chat-box {
+    height: 60vh;
+    overflow-y: auto;
+    border: 1px solid var(--chat-box-border);
+    border-radius: 5px;
+    padding: 15px;
+    background-color: var(--chat-box-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.message {
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.user-message .badge {
+    max-width: 70%;
+}
+
+.bot-message .badge {
+    max-width: 70%;
+}
+
+.text-muted {
+    font-size: 0.8rem;
+}
+
+/* Scrollbar Styling */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .chat-box {
+        height: 50vh;
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-link {
+        padding: 5px 10px;
+    }
+}

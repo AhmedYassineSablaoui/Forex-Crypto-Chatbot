@@ -1,0 +1,25 @@
+# Forex-Crypto-chatbot/Dockerfile.frontend
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy frontend requirements and install
+COPY frontend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the frontend code
+COPY frontend/ .
+
+# Collect static files (for production, you might use a web server like Nginx)
+RUN python manage.py collectstatic --noinput
+
+# Expose the Django port
+EXPOSE 8000
+
+# Command to run migrations and start the Django server
+CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
